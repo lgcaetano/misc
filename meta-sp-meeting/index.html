@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meta SP meeting prep</title>
+<meta name="description" content="Zoppy's preparation for Meta's WhatsApp in-person feedback session at Meta São Paulo on 2026-10-27: Meta's agenda mapped to how Zoppy works today, where clients get stuck, and what to ask.">
+<style>
+:root{--bg:#f6f7f4;--ink:#1a1d1a;--muted:#5c635c;--card:#ffffff;--line:#dfe3dd;--accent:#0b7a5a;--warn:#b4521a;--chip:#e7efe9;--code:#eef0ec;--ask:#e9f3ff;--today:#f3f0e4}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111412;--ink:#ebefe9;--muted:#a3aaa2;--card:#1a1e1b;--line:#2b312c;--accent:#4fd1a5;--warn:#f0a06a;--chip:#223128;--code:#20251f;--ask:#1b2a3a;--today:#2a2718}}
+:root[data-theme="dark"]{--bg:#111412;--ink:#ebefe9;--muted:#a3aaa2;--card:#1a1e1b;--line:#2b312c;--accent:#4fd1a5;--warn:#f0a06a;--chip:#223128;--code:#20251f;--ask:#1b2a3a;--today:#2a2718}
+*{box-sizing:border-box}
+html{font-size:17px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+main{max-width:820px;margin:0 auto;padding:16px 16px 80px}
+h1{font-size:1.6rem;line-height:1.2;margin:8px 0 4px}
+h2{font-size:1.25rem;margin:40px 0 8px;padding-top:12px;border-top:2px solid var(--line)}
+h3{font-size:1.05rem;margin:22px 0 6px}
+h4{font-size:.95rem;margin:14px 0 4px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+p{margin:8px 0}
+.sub{color:var(--muted);font-size:.95rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}
+.ask{background:var(--ask);border-left:4px solid var(--accent);padding:10px 12px;border-radius:8px;margin:10px 0}
+.ask b{color:var(--accent)}
+.today{background:var(--today);border-radius:8px;padding:10px 12px;margin:10px 0}
+.say{border-left:4px solid var(--warn);padding:8px 12px;margin:10px 0;font-style:italic}
+.chip{display:inline-block;background:var(--chip);border-radius:999px;padding:2px 10px;font-size:.8rem;margin:2px 4px 2px 0;color:var(--muted)}
+ul,ol{padding-left:22px;margin:6px 0}
+li{margin:4px 0}
+code{background:var(--code);padding:1px 5px;border-radius:4px;font-size:.88em;word-break:break-all}
+table{border-collapse:collapse;width:100%;font-size:.9rem;margin:8px 0}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600}
+details{margin:8px 0}
+summary{cursor:pointer;color:var(--accent);font-weight:600}
+blockquote{margin:8px 0;padding:6px 12px;border-left:3px solid var(--line);color:var(--muted);font-size:.95rem}
+a{color:var(--accent)}
+.toc a{display:block;padding:6px 0;border-bottom:1px dashed var(--line);text-decoration:none}
+.small{font-size:.85rem;color:var(--muted)}
+.logi td:first-child{white-space:nowrap;color:var(--muted)}
+@media (max-width:480px){html{font-size:16px} h1{font-size:1.4rem} th,td{padding:5px 6px}}
+</style>
+</head>
+<body>
+<main>
+
+<h1>Meta São Paulo, 27 Oct 2026</h1>
+<p class="sub">WhatsApp in-person feedback session. Zoppy as BSP / Tech Provider. Prepared 26 Oct from five months of engineering sessions, the Flows bug report, the pricing and catalog research, the code on master, and the GitHub cards.</p>
+
+<div class="card">
+<h4>Logistics</h4>
+<table class="logi">
+<tr><td>When</td><td>Tue 27 Oct, 09:00 to 10:15 BRT (they say 75 to 90 min). Next event on your calendar: Daily Expansão at 10:30.</td></tr>
+<tr><td>Where</td><td>Meta São Paulo, B32 (Birmann 32), Av. Brigadeiro Faria Lima 3732, Itaim Bibi. Check in at reception as a visitor for Meta hosted by Jenna J. Visitors are escorted at all times.</td></tr>
+<tr><td>Arrive</td><td>15 to 20 min early (30 if driving). Government photo ID is mandatory. Uber recommended; garage is the building's and paid.</td></tr>
+<tr><td>If stuck</td><td>Jenna J. on WhatsApp: +1 559-285-1311.</td></tr>
+<tr><td>Who</td><td>Zoppy: Luis, Gabriel Reis (creator), Lucas Roscoe, Alexandre Kac (optional). Meta: Roel Mucollari (organizer), Jenna J. (host), product, design, engineering and data science, some joining by Zoom.</td></tr>
+<tr><td>Money</td><td>USD 250 participation incentive covers travel and parking; no separate reimbursement.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h4>Format, in their words</h4>
+<p>"A hands-on working session with the people who build these products." They will walk the real WhatsApp flows step by step and ask where you or your clients got stuck, what recovery looked like and how long it took; sketch fixes on the whiteboard; show early designs. They asked you to think about three things: where clients get stuck, what you built yourselves to work around it, how they can support your growth.</p>
+<p>Their seven topics: (1) onboarding through Embedded Signup and Coexistence, (2) the new account model with one number across more than one partner, (3) getting clients verified, including partner-led verification, (4) warnings before a client gets restricted and error messages that tell you what to fix, (5) visibility into clients' account health and growth opportunities, (6) support and appeals, (7) how they can support growth.</p>
+<p><b>Strategy.</b> Answer their agenda with concrete cases (section A, one block per topic, each with "how we do it today", "where clients get stuck", "what we built", "ask"). Then use topics 4, 6 and 7 as the doors for our own four big issues (section B): no test path for Brazil, accepted messages that silently die, Flows, and the shared app quota. Leave with names and a place to file bugs.</p>
+</div>
+
+<div class="toc">
+<a href="#a1">A1. Onboarding: Embedded Signup and Coexistence</a>
+<a href="#a2">A2. New account model: one number, many partners</a>
+<a href="#a3">A3. Verification, including partner-led</a>
+<a href="#a4">A4. Warnings before restrictions, actionable errors</a>
+<a href="#a5">A5. Account health and growth visibility</a>
+<a href="#a6">A6. Support and appeals</a>
+<a href="#a7">A7. How Meta can support growth</a>
+<a href="#b1">B1. Testing without a production account</a>
+<a href="#b2">B2. Silent failures: 200, then nothing</a>
+<a href="#b3">B3. WhatsApp Flows</a>
+<a href="#b4">B4. Rate limits and the shared app quota</a>
+<a href="#b5">B5. Communication and documentation</a>
+<a href="#b6">B6. Webhooks, templates, media, pricing (shorter)</a>
+<a href="#questions">C. Questions to put to them</a>
+<a href="#bring">D. What to bring, how to run it</a>
+<a href="#notours">E. Do not raise: our own faults</a>
+<a href="#internal">F. Internal findings from the code study</a>
+</div>
+
+<div class="card">
+<p><b>The one-paragraph version.</b> Zoppy runs WhatsApp for about 1,300 Brazilian stores through one tech-provider app and, since July, an AI sales agent that answers customers with product catalogs as WhatsApp Flows. The four things that cost us most: no way to test the Cloud API from Brazil without a production business account; messages accepted with HTTP 200 that are then lost with no error, so a BSP cannot fall back; one opaque app-level API quota shared by all tenants, sized by a "daily active users" formula that does not describe a BSP; and platform changes that reach us through vendor blogs and forum threads instead of Meta.</p>
+<p class="say">Abertura em PT-BR: "A gente opera o WhatsApp de ~1.300 lojas num app só. Nosso maior custo com a Meta não é preço, é incerteza: não conseguimos testar sem conta de produção, mensagens aceitas somem sem erro, e a cota do app é uma caixa preta compartilhada por todo mundo."</p>
+</div>
+
+<div class="card">
+<h4>The fleet today (production, 26 Oct 2026, test companies excluded)</h4>
+<table>
+<tr><th>Active WhatsApp accounts</th><td>1,246 (1,379 rows incl. inactive). 1,204 on Zoppy's tech-provider app, 42 on the merchant's own Meta app (legacy path).</td></tr>
+<tr><th>Coexistence vs Cloud</th><td>374 coexistence (WhatsApp Business app + API), 297 cloud-only via Embedded Signup, 575 older rows with no origin recorded. Since May 2026 coexistence onboardings outnumber cloud-only about 2 to 1 (Sep: 50 vs 35; Oct so far: 34 vs 21).</td></tr>
+<tr><th>Onboardings 2026</th><td>Jan 47, Feb 64, Mar 94, Apr 60, May 94, Jun 82, Jul 75, Aug 81, Sep 85, Oct 55 (to the 26th).</td></tr>
+<tr><th>Business verification</th><td>460 verified, 77 not verified, 10 pending submission, 8 rejected, 6 need more info, 3 pending, 1 revoked; 677 unknown (field never synced). Account review: APPROVED almost everywhere, 2 pending, 2 rejected.</td></tr>
+<tr><th>Health (can_send_message false)</th><td>269 accounts. By Meta's own health entities: 232 "business has not passed business verification" (141010), 61 "error with the payment method" (141006), 4 "WABA is banned" (141014), 3 "failed the commerce check" (141005), 2 profile incomplete (131000), 2 at the business-initiated conversation limit (141015).</td></tr>
+<tr><th>Quality rating</th><td>1,117 green, 111 unknown, 14 yellow, 4 red.</td></tr>
+<tr><th>Messaging tier</th><td>108 at 250, 436 at 2K, 480 at 10K, 176 at 100K, 6 unlimited, 9 untiered, 31 unknown.</td></tr>
+<tr><th>Number verification</th><td>780 verified, 439 not verified, 31 expired.</td></tr>
+<tr><th>Templates</th><td>40,017 approved; 12,540 awaiting recreation after a WABA change (956 companies); 401 rejected (134 companies); 6 paused.</td></tr>
+<tr><th>Account alerts open</th><td>15 offboarded, 11 policy violation (all "SPAM"), 2 deleted. Zero <code>account_alerts</code> webhook rows ever.</td></tr>
+<tr><th>Open WhatsApp integration issues</th><td>247 "business blocked" (242 companies, mostly 141010 unverified), 139 payment issue (92), 69 "WABA blocked" (68), 29 policy violation, 21 token invalid (14), 21 sustained delivery failure (13), 10 BM blocked, 5 resync failed, 4 quality red, 2 review rejected.</td></tr>
+<tr><th>Messages, last 30 days (26 Sep to 26 Oct, data lake)</th><td>Business-initiated: 3,980,598 sent by the API; 611,999 failed (15.4%); 467,856 never left <code>sent</code> (most of those are coexistence echoes, see A1). Templates alone: 3,131,529 sent, 586,549 failed (18.7%); of the 2,914,655 Marketing Messages Lite sends, 115,387 (4.0%) are still at <code>sent</code>. AI agent: 26,233 sent, 320 failed (1.2%). Customer-initiated inbound: 823,288.</td></tr>
+<tr><th>Companies hit in 30 days</th><td>1,059 companies sent templates. 254 had at least one payment-block failure (131042), 79 were mostly payment-blocked, 84 lost more than half of 100+ sends, 50 hit "Rate limit hit" (130429), 22 a quality restriction (131048/131064), 12 an account lock (131031), 2 the country restriction (130497). Every single day between 17 and 45 companies had 100% of 20+ template sends fail, and between 26 and 63 lost more than a quarter.</td></tr>
+</table>
+<p class="small">Source: Grafana MySQL datasource (WppAccounts, WppAccountPhoneNumbers, WppAccountHealthStatus, WppAccountAlerts, WhatsappMessageTemplates) and the Athena data lake (<code>zoppy_silver.db_wppmessages</code>, <code>db_whatsappmessagetemplates</code>), all read-only, 26 Oct 2026.</p>
+</div>
+
+<h2>A. Their agenda, topic by topic</h2>
+<p class="sub">Each block: how Zoppy does it today (so you can speak to it), where clients got stuck with dates, what we built around it, and the ask.</p>
+
+<h3 id="a1">A1. Onboarding through Embedded Signup and Coexistence</h3>
+<div class="card">
+<div class="today" id="a1-today"><b>How we do it today</b> (code on master, 26 Oct).
+<ol>
+<li>Three entry points, one backend endpoint: the CRM onboarding wizard, the "Acesso restrito" card in the CRM chat, and the PLG app's "Conectar WhatsApp". All open the Facebook JS SDK popup (no redirects) with <code>config_id</code>, <code>response_type: code</code>, <code>feature: whatsapp_embedded_signup</code>, <code>featureType: whatsapp_business_app_onboarding</code>, <code>sessionInfoVersion: 3</code>. There is no cloud-only variant: every entry asks for the Business-app onboarding and Meta's popup decides; we infer coexistence from which FINISH event comes back.</li>
+<li>The popup's <code>WA_EMBEDDED_SIGNUP</code> message gives us <code>waba_id</code> and <code>phone_number_id</code>; ERROR and CANCEL events (with <code>session_id</code>, <code>current_step</code>, <code>error_code</code>) are logged through a dictionary of about 100 Meta signup error codes translated to PT-BR. Nothing is persisted; only logs.</li>
+<li>Backend exchanges the code for a token server-side (since May 2026; before that the app secret shipped in the JS bundle). Only <code>access_token</code> is kept, stored in plain text; <code>expires_in</code> is discarded and <code>debug_token</code> is never called. An expired code (30-second window) surfaces as a 422 and the user redoes the popup.</li>
+<li>We read the WABA (<code>name, timezone, currency</code>) and the phone (<code>verified_name, code_verification_status, quality_rating</code>), upsert one account row per company (<code>appId</code> = our tech-provider app, <code>scenario</code> tech_provider or tech_provider_wpp_business, <code>active: false</code>), one phone row, and answer "integrated with success" before anything happened at Meta.</li>
+<li>Async activation, resumable by step: <code>POST /{waba}/subscribed_apps</code> with an empty body (we never use <code>override_callback_uri</code>); read <code>platform_type</code> and <code>is_on_biz_app</code>; coexistence: if the number is on the Business app, nothing else, otherwise we silently downgrade to cloud and register; cloud: <code>POST /{phone}/register</code> with a hard-coded PIN <code>123456</code> (no UI ever collects the merchant's two-step PIN; 133005/133006 only get "retry"). Then <code>origin</code> becomes TECH_PROVIDER or WHATSAPP_BUSINESS_APP and the account is active. Ten attempts, exponential backoff, then a "failed, attempt N/10" card with a retry button.</li>
+<li>Post-activation, best effort: template sync (everything missing on the new WABA becomes PENDING_DELETION and is re-submitted under a new name, no pacing), health, messaging limit, currency. The <code>smb_app_data</code> state sync is no longer requested (removed 4 Sep) and inbound <code>smb_app_state_sync</code> is acknowledged and dropped; history sync has no caller.</li>
+<li>Webhooks: Meta → API Gateway in zoppy-event-bridge (HMAC check with our app secret) → SNS/SQS → zoppy-api. <code>account_update</code> events (partner removed, offboarded, violation, restriction, ban) become account alerts; <code>PARTNER_ADDED</code> is log-only. A 15-minute-cached status endpoint refreshes verification, review, currency, quality and messaging limit.</li>
+<li>Re-onboarding reuses the same row (WABA id swapped in place, token replaced, origin wiped until the next activation); the company loses Chat until activation completes; a WABA or phone id held by another company's row, including idle disconnected rows, blocks with "WABA_ID já registrado". Disconnect flips the row to idle and calls nothing at Meta: no <code>DELETE subscribed_apps</code>, no deregister, so Meta keeps sending us webhooks for it.</li>
+<li>Legacy path: 42 active accounts still use the merchant's own Meta app (support typed credentials, webhook pointed at a per-account URL). Their webhooks are signed by their app's secret, and WhatsApp Commerce Flows skip them.</li>
+</ol>
+<p class="small">We never read <code>ownership_type</code>, <code>on_behalf_of_business_info</code> or <code>country</code>.</p>
+<p><b>Coexistence, once active.</b></p>
+<ul>
+<li>374 active accounts are known coexistence (30%); about 300 to 320 companies produce echoes every weekday (data lake, 30 days), so a good part of the 575 older accounts with no origin recorded are coexistence too. Since May, coexistence onboardings outnumber cloud-only about 2 to 1. 21 coexistence companies run our AI agent.</li>
+<li><b>Echoes</b> (<code>smb_message_echoes</code>, the merchant replying from the WhatsApp Business app) are 49% of all our inbound traffic: 36,004 echoes vs 37,269 customer messages in one weekday, 33,000 to 40,000 every weekday over the last 30 days. We store them as outbound messages (status sent, origin business_initiated, no manager, no AI trigger) and push them to the inbox. An echo never assigns a seller, never closes a room and does not pause the AI, so the agent keeps answering after the human replied from the app; worse, the AI's context extractor shows the human's app reply to the model as if it were a campaign. The Python agent has no notion of echo at all.</li>
+<li><b>History</b> (<code>history</code> phases): the strategy shipped in Jan 2026, nothing ever requests the sync from Meta and the gate column is NULL on every account, so no history message has ever been imported. Phone-book sync (<code>smb_app_state_sync</code>): dropped at two layers since 4 Sep; Meta still pushes it, about 600 events a day in night bursts, with payloads that risk the 256 KB SQS limit; its timestamps are in milliseconds while every other webhook is in seconds.</li>
+<li>We read <code>is_on_biz_app</code> only during the first activation and only downgrade (coexistence → cloud); a number that joins the Business app later is never re-detected. Templates, campaigns, groups, Flows and MM Lite are not gated by coexistence.</li>
+</ul>
+</div>
+<h4>Where clients got stuck</h4>
+<ul>
+<li><b>No test path.</b> Onboarding plus first send cannot be exercised without a real customer; Meta's free test number cannot message Brazilian phones (section B1).</li>
+<li><b>Adding Zoppy as partner reset a verified WABA's review</b> to "not started" before any API call (Khor / Taça e Prosa, May 2026). Undocumented. The merchant's Meta ticket got an automatic "Meta AI Agent" reply about payment methods. Removing the WABA from the portfolio hung in the UI.</li>
+<li><b>Re-onboarding in coexistence turned on the cross-country block</b> for a Brazilian number messaging Brazilians (Lissen, 15 Sep 2026): 531 accepted, 0 delivered, 456+ with <code>130497</code>, while <code>health_status</code> said AVAILABLE for WABA, business and app. The business "country" is not the number's DDI and is not readable on the WABA node.</li>
+<li><b>Re-onboarding a number yields a new WABA with no templates.</b> Templates are per WABA with no migration; today 12,540 templates in 956 companies are waiting to be recreated under a new name and re-approved, and every month of 2026 between 260 and 1,380 templates in 130 to 240 companies were orphaned this way (vs 6 to 48 rejected by Meta's review per month). Bendizê: 150 recreations in a burst hit <code>(#4) Application request limit reached</code> and blocked template operations for every other company. 85 templates in 16 companies fail recreation permanently and show as "Reprovado" with no reason (content rules, carousel media, "Variables can't be at the start or end of the template").</li>
+<li><b>Coexistence activation pulled the merchant's whole phone book into the CRM.</b> <code>smb_app_state_sync</code> is the address book; Meta re-sent it unprompted on 28 Aug and 1 Sep (Esportiva): 1,610 then 239 "customers" created from contacts who never bought, and a segmented campaign reached ~2,000 of them. Zoppy had requested the sync at activation as documented. The field cannot be unsubscribed separately.</li>
+<li><b>A stored business token silently lost access to the WABA</b> (ZHAYA SHOES, since 19 Aug): code 100 "Object with ID ... does not exist, cannot be loaded due to missing permissions" on every send; the integration looked green; no event fired.</li>
+<li><b>Failures inside Meta's popup, before we get anything.</b> Amori Joias: coexistence pairing failed with <code>wa.md.pair Code=16</code>; removing and re-adding the WABA in Business Manager did not help; closed as "no fix on our side". Naturalis: the popup showed a policy restriction while <code>health_status</code> said healthy; it resolved itself. Biodora: first attempt cancelled at step <code>WHATSAPP_BUSINESS_APP_ONBOARDING_QR_CODE</code>. There is no server-side way to fetch what happened to a signup <code>session_id</code>; we rely on the customer's screenshot.</li>
+<li><b>The 30-second single-use authorization code</b> is too short for Brazilian mobile networks. Biodora: Meta answered "This authorization code has expired" 36 ms after our POST reached the API. In 30 days: 108 signups started, 103 succeeded, 2 of the 5 failures were expired codes.</li>
+<li><b>Coexistence activation burned the 24-hour <code>smb_app_data</code> window.</b> Soul Consciente: 4 onboardings plus 7 manual resyncs times 10 attempts, about 110 sync calls, then <code>(#4) Synchronization Request limit exceeded</code> and <code>(#135000) Synchronization request can only be made within 24 hours of onboarding</code>; the account sat 7 days with a blank status line. We no longer request the sync at all, so history import from the Business app is never attempted.</li>
+<li><b>Registration PIN.</b> Embedded Signup gives us no way to receive or set the number's two-step PIN, so we register with a hard-coded one; a number that already has its own PIN fails with 133005 and there is no UI to enter it.</li>
+<li><b>Forty-two stores still integrated through their own Meta app</b> (a legacy hack). Flows endpoints are signed with that app's secret, so Zoppy's endpoint cannot serve them.</li>
+</ul>
+<h4>What we built</h4>
+<ul>
+<li>Dropped <code>smb_app_state_sync</code> entirely and a cleanup job for ghost customers (<a href="https://github.com/Zoppy-crm/zoppy-api/pull/11118">zoppy-api PR 11118</a>).</li>
+<li>Template recreation on re-integration, including carousel templates (82 models in 35 companies) and a change detector that avoids Meta calls when nothing Meta-visible changed.</li>
+<li>Moved the code-to-token exchange out of the browser in May (it used to ship the app secret in the JS bundle).</li>
+</ul>
+<div class="ask"><b>Ask.</b> A server-side way to fetch the outcome of a signup <code>session_id</code> (step reached, error code) and a documented list of <code>current_step</code> values. A longer or renewable authorization code. A way to receive or set the two-step PIN inside Embedded Signup, or registration without a PIN for numbers created there. Test-mode Embedded Signup yielding a WABA that can message +55. Document and fix the review reset on partner add. Expose the business country used for 130497 and make health reflect it. Template copy or migration when a number moves to a new WABA, or no re-review for identical content, and per-WABA template-management quotas. The phone-book sync opt-in and separate from history; a sync budget we can read. An <code>account_update</code> when a partner loses asset access or a phone drops off the Cloud API.</div>
+</div>
+
+<h3 id="a2">A2. The new account model: one number across more than one partner</h3>
+<div class="card">
+<div class="today" id="a2-today"><b>What we assume today</b> (code on master, 26 Oct).
+<ul>
+<li><b>One WABA ↔ one app ↔ one company.</b> Inbound webhooks resolve the company by WABA id with a plain "find one" (no active filter, first row wins). Production holds the assumption: 0 WABAs with two accounts, 0 phone ids under two accounts. We have no code path for a WABA owned by another partner: <code>ownership_type</code>, <code>on_behalf_of_business_info</code> and anything "solution partner" appear nowhere in our repos.</li>
+<li>Everything is bound to one Meta app: token exchange, webhook signature, Flow endpoint signature, Flow provisioning (skipped when the account's app is not ours). 1,204 active accounts are on our app; 42 legacy ones on the merchant's own app, all with no origin recorded.</li>
+<li>We subscribe the app to the WABA with an empty body (no field list, no <code>override_callback_uri</code>); fields are whatever the App Dashboard says, which we cannot read with a business token.</li>
+<li>On disconnect we call nothing at Meta, so from Meta's side we remain a partner on every WABA that ever connected.</li>
+</ul>
+</div>
+<h4>What we have seen that touches this</h4>
+<ul>
+<li>The tech-provider webhook receives events for every WABA ever subscribed to the app, including ones Zoppy no longer serves: 828,109 of 1,692,812 deliveries over 3 days in Aug (48.9%) were for unknown WABAs, and answering 400 makes Meta redeliver. Sharing a number across partners multiplies this.</li>
+<li>Our test WABA has two apps subscribed ("App Zoppy - MIRROR" with an <code>override_callback_uri</code>, "App Zoppy - Tech Provider" with its default callback). Meta fans every webhook out to both; production logs "account not found or inactive" for each one. That is the multi-partner situation in miniature, and it shows what breaks when a customer's number is shared: statuses for the other partner's wamids match nothing; the other partner's API sends are invisible unless Meta echoes them (unknown); template sync would import the other partner's templates and our recreation job could act on them; throughput, quality, tier and the 24-hour windows are per number, so the other partner's traffic consumes the same budget; the other partner can register or deregister the number and burn the <code>smb_app_data</code> sync quota; our AI's human-takeover gate cannot see a human replying through another partner.</li>
+<li>Flow data endpoints are signed with the secret of "the app connected to the Flow", and the encryption public key is per phone number. With two partners on one number, which app signs, and whose key is on the number?</li>
+<li>Templates, quality rating and messaging tier live on the WABA and the portfolio, not on the partner. One partner's campaigns set the tier and quality the other one lives with.</li>
+<li>Subscription state is opaque to a tech provider: a business token cannot read which fields the app has on, and whether enabling a field applies to already-subscribed WABAs is stated nowhere.</li>
+</ul>
+<div class="ask"><b>Ask.</b> In the new model: which app receives <code>messages</code>, <code>statuses</code>, <code>smb_message_echoes</code>, <code>history</code> and <code>smb_app_state_sync</code> when several apps are subscribed, with a deterministic owner for inbound; whether another partner's API sends are echoed to us and marked as such; token, <code>register</code> and deregister ownership; how templates and Flows are scoped; <code>ownership_type</code> and <code>on_behalf_of_business_info</code> on the WABA and phone objects so partners can detect sharing; a readable subscription state per WABA and per app; partner-scoped Flow keys and signing; a way to stop deliveries for a partner that was removed; and who sees quality, tier and template state when two partners share a number.</div>
+</div>
+
+<h3 id="a3">A3. Getting clients verified, including partner-led verification</h3>
+<div class="card">
+<div class="today" id="a3-today"><b>How we do it today</b> (code on master, 26 Oct).
+<ul>
+<li>We read <code>business_verification_status</code>, <code>account_review_status</code> and <code>currency</code> from the WABA only when a merchant opens the status report screen (15-minute cache); no job syncs them. That is why 677 of 1,246 active accounts have the field NULL. The <code>account_review_update</code> webhook writes the decision; <code>PARTNER_CLIENT_CERTIFICATION_STATUS_UPDATE</code> is received and discarded (log only; card open since May).</li>
+<li>Display name: we read <code>verified_name</code> on that same screen and do not persist it; <code>name_status</code> is never requested and <code>phone_number_name_update</code> has no handler, so a display-name rejection (131037) is invisible to us.</li>
+<li>The CRM shows one badge computed from both statuses: "Verificada", "Pendente" ("você pode continuar enviando normalmente") or "Reprovada" (with a verification tooltip even when the cause is a ban). Review status is never shown on its own. The PLG app explains 141010 ("A Meta limita quantas conversas a loja pode iniciar por dia", button "Verificar a empresa na Meta" → Business Manager security settings) and review rejected/pending.</li>
+<li><b>Partner-led verification: nothing.</b> No call to any verification endpoint, no document upload, no submit-on-behalf. Every path is a link to Business Manager. Onboarding is a single "Login com o Facebook" button; no step tells the merchant to verify the business or add a payment method before connecting. The only trace of "partner-led" in our code is Meta's own Embedded Signup error strings translated to PT-BR, including 2494143: "A empresa já iniciou ou tentou fazer a verificação com outro parceiro. No momento, não aceitamos que vários parceiros realizem a verificação."</li>
+<li>CSM guidance exists only inside card comments ("complete a verificação no Gerenciador de Negócios"); the card to write a Meta-errors document and train CS has been open since May with an empty body.</li>
+</ul>
+</div>
+<h4>Where clients got stuck</h4>
+<ul>
+<li>About 260 active accounts carry <code>141010</code> (business not verified, volume limited) and 76 carry <code>141006</code> (payment method). Zoppy shows these as "blocked" alerts although replies inside the 24-hour window keep working; the mapping from code to actual effect is not documented.</li>
+<li>Five stores cannot create Flows at all: every create fails with <code>139000</code> "Blocked By Integrity"; all five also fail business verification. Not documented; "fixed by contacting Support" only.</li>
+<li><code>business_verification_status</code>, <code>account_review_status</code> and partner certification (<code>PARTNER_CLIENT_CERTIFICATION_STATUS_UPDATE</code>) are three different things; Zoppy confused two of them for months (card 10197) and accounts approved before a field existed stay NULL forever because the webhook only fires on change.</li>
+<li>Adding Zoppy as partner reset a verified WABA's review to "not started" (A1). Zoppy has "no endpoint to revert, skip or accelerate the re-audit"; the merchant (Khor) later turned WhatsApp off and runs on e-mail only.</li>
+<li>Meta refuses a second partner on verification: error 2494143 "the business already started or attempted verification with another partner; we do not currently accept multiple partners performing the verification". So a merchant who tried once with someone else is stuck.</li>
+<li>Display name: a change triggered a 72-hour retry lock with no conclusion (Stucci, 16 days to resolve); display-name rejection (131037) is not visible to us at all.</li>
+<li>Unik Store: an approved template failed with generic 135000; it was 141010 (unverified business, volume limited) in disguise; 5 days to find out.</li>
+</ul>
+<div class="ask"><b>Ask.</b> One documented matrix of verification, review, partner certification, <code>health_status</code> (AVAILABLE / LIMITED / BLOCKED) and the 141xxx codes, with what each combination blocks and the merchant action. Partner-led verification for Tech Providers: an API or documented path to initiate, submit and track verification and payment-method setup on the merchant's behalf, with webhooks on first classification, not only on change; and lift the single-partner rule (2494143). Do not reset review on partner add, or document it with an SLA and a webhook. Document that unverified businesses cannot create Flows, and a self-serve path out of 139000. <code>name_status</code> in the phone webhook.</div>
+</div>
+
+<h3 id="a4">A4. Warnings before a client gets restricted, and error messages that tell you what to fix</h3>
+<div class="card">
+<div class="today" id="a4-today"><b>How we do it today</b> (code on master, 26 Oct).
+<ul>
+<li><b>Health is polled, not pushed.</b> Every 6 hours (was 3; throttled to one account per 12 s so a full sweep takes about 4.2 h) we read the phone's messaging limit and quality rating and the WABA's <code>health_status</code>, and store one row per entity (WABA, BUSINESS, APP) with Meta's <code>error_description</code> and <code>possible_solution</code>. We never read <code>throughput</code>. The sweep is our single biggest consumer of the app quota; about 900 dead WABAs still cost one call each per cycle.</li>
+<li><b>The earliest signal we ever get is the restriction itself.</b> <code>phone_number_quality_update</code> arrives only on FLAGGED/UNFLAGGED (YELLOW never arrives, only polling sees it); <code>account_update</code> events (violation, restriction, ban, offboarded, partner removed) become account alerts after the fact; 141015 (daily business-initiated cap reached) is only ever seen in a health row up to 6 h later. We have zero <code>account_alerts</code> webhook rows in production, so either Meta does not send them to a tech-provider app or the field is not subscribed; we cannot tell from code. <code>business_capability_update</code>, <code>business_status_update</code>, <code>payment_configuration_update</code> have no handler.</li>
+<li><b>Health → "integration issues".</b> A health row with <code>can_send_message</code> false opens WPP_BUSINESS_BLOCKED / WPP_WABA_BLOCKED / WPP_APP_BLOCKED and closes on the next sweep that reads true, so recovery shows up to 6 h late. Meta's LIMITED is collapsed into "not AVAILABLE", so 141010 (unverified, volume limited) opens "Business Manager blocked" and 141006 (payment, only business-initiated blocked) opens "WABA blocked". Today: 247 open WPP_BUSINESS_BLOCKED (242 companies), 139 WPP_PAYMENT_ISSUE, 69 WPP_WABA_BLOCKED, 29 policy violation, 21 token invalid, 21 sustained delivery failure, 10 BM blocked, 4 quality red. Send-time path: a <code>failed</code> status with 131031 opens WPP_BLOCKED_BM, 131042 opens WPP_PAYMENT_ISSUE, closed by any later delivered message, so the payment issue flaps daily.</li>
+<li><b>What the merchant sees.</b> The CRM renders only 2 of the 15 issue types as banners (BM blocked, payment issue), MASTER role only, with links to Zoppy help-center articles. Business blocked, WABA blocked, quality red, token invalid, policy violation: never rendered in the CRM. The CRM status screen shows quality ("Boa/Atenção/Ruim"), the tier as "limite diário {used}/{max}" (numerator from pricing analytics, so it over-estimates), and a "Visualizar detalhes" link hard-coded to one business id and asset id for every merchant. The PLG app translates 141006/141014/141005/141010/131000/141015 with CTAs. The merchant-notification rail (e-mail/WhatsApp) has tables and a model on master but no application code.</li>
+<li><b>Error mapping.</b> Synchronous Meta errors are classified in <code>@Zoppy-crm/whatsapp-v2</code> and given PT-BR titles in zoppy-api: token expired (reconnect), permission denied ("Facebook Developer Dashboard", useless to a merchant), rate limited (4, 17, 341, 613, 80007, 80008, 130429, 131048, 131056, 131064 all share one message), policy (368, 130497, 131031 → "Conta restrita por política... entre em contato com o suporte da Meta"), registration (133xxx, incl. 133010 → "verificação da empresa pendente"), media (131052/131053 → "verifique o formato e o tamanho", which is wrong for 131053: it is Meta's fetch proxy failing on our link), template params (132xxx), unknown → "erro inesperado (Detalhe Meta: English text)". Webhook <code>failed</code> statuses get PT-BR copy for 131026, 131042, 131049, 131050, 130472 only in the template test-send path. In campaigns the merchant sees "{n} falhas" and, per recipient, only the CSV export with Meta's raw English message; in the inbox, "Erro: {error_data.details}" in English. No copy at all for 130497 on webhook, 131037, 131047, 470, 135000, 139000.</li>
+<li><b>Sustained-failure detector</b>: 20+ failures in 15 min at 80%+ failure rate opens an issue; 131049 and 130472 are ignored because nothing can be done about them. A daily Grafana rule counts companies above failure, pending or rejection thresholds (39 companies on 26 Oct) with no per-company label. No Grafana rule watches Meta-side tenant health (quality, tier, verification, bans).</li>
+</ul>
+</div>
+<h4>Where clients got stuck (this is where our biggest issues live)</h4>
+<ul>
+<li><b>No warning before a restriction.</b> <code>131042</code> "Business eligibility payment issue" is our number one failure: 242,446 failed sends across 255 companies in the last 30 days (51,147 across 118 companies in the last 7), "a rotating cast of tenants", each discovered after a campaign failed 100%. Every day 17 to 45 companies have all of their template sends fail. GUIPACK: from 20 Oct 17:30 every agent message fails, customers get no reply. The merchant finds out from us.</li>
+<li><b>Health says AVAILABLE while 100% of sends fail</b>: 130497 (Lissen), 133010 "Account not registered" (Malacara), 131042 (several). <code>health_status</code> and send-time errors disagree.</li>
+<li><b>Accepted, then silently failed.</b> In a 70-send test, 20 (28.6%) failed after the 200 under a "sent successfully" banner. Last 30 days, all after a 200 and a <code>wamid</code>:
+<table>
+<tr><th>Code</th><th>Meta's text</th><th>Failed</th><th>Companies</th><th>Merchant can act?</th></tr>
+<tr><td>131042</td><td>Business eligibility payment issue</td><td>242,446</td><td>255</td><td>yes, after the fact</td></tr>
+<tr><td>131026</td><td>Message undeliverable</td><td>153,506</td><td>962</td><td>no reason given</td></tr>
+<tr><td>131049</td><td>Not delivered to maintain healthy ecosystem engagement</td><td>105,219</td><td>904</td><td>no, per-user cap, not queryable</td></tr>
+<tr><td>130472</td><td>User's number is part of an experiment</td><td>53,380</td><td>896</td><td>no, undefined</td></tr>
+<tr><td>131048</td><td>Spam rate limit hit</td><td>36,187</td><td>22</td><td>quality, not rate</td></tr>
+<tr><td>131050</td><td>Recipient opted out of marketing</td><td>8,803</td><td>342</td><td>yes</td></tr>
+<tr><td>130429</td><td>Rate limit hit</td><td>5,698</td><td>50</td><td>no per-number signal</td></tr>
+<tr><td>130497</td><td>Restricted from messaging users in this country</td><td>3,041</td><td>2</td><td>no, country not readable</td></tr>
+<tr><td>131031</td><td>Business account locked</td><td>1,808</td><td>12</td><td>support only</td></tr>
+<tr><td>131056</td><td>Pair rate limit hit</td><td>1,246</td><td>1</td><td>partly</td></tr>
+<tr><td>131053</td><td>Media upload error</td><td>417</td><td>17</td><td>misleading, Meta's fetch proxy</td></tr>
+</table>
+Flows stay at <code>sent</code> forever with no <code>failed</code> at all (B2).</li>
+<li><b>Error taxonomy mixes rules.</b> <code>131048</code> (quality) looks like throughput; <code>133016</code> (registration throttle) counted as rate limit; <code>131037</code>, <code>131047</code>, <code>470</code>, <code>135000</code> had no mapping anywhere. "Rate limit hit" 130429 on a verified 2,000-tier portfolio at 300 sends, delivered only by webhook after the 200.</li>
+<li><b>Template rejections are free text, often without a code.</b> 35 rejections in 10 days: 23 were Meta rules that could be validated locally if machine-readable, 9 were "account unavailable" surfacing as "provider rejected". "Conta restrita" and "não pode criar um novo modelo" arrived with no code. The word "KIT" triggered a fraud-policy rejection (La Muse); removing it got approval. Re-saving a rejected template does not re-submit it.</li>
+<li><b>Raw Meta text reached merchants</b>: "(#4) Application request limit reached" when editing a template (July to Aug), because the app quota was exhausted (B4).</li>
+<li><b>Quality webhook fires only on band change</b>, so a number born UNKNOWN that improves never gets an event.</li>
+</ul>
+<h4>What we built</h4>
+<ul>
+<li>A 6-hourly health sweep over every account (tier, quality, throughput, health_status), because webhooks do not carry it. It became the single largest consumer of our app quota.</li>
+<li>Dashboards "WhatsApp failures by nature", a daily alert on tenants above failure thresholds, a swallowed-Flow detector, and a test-message flow that waits for the status webhook instead of claiming success at accept.</li>
+<li>A PT-BR error-mapping layer in <code>@Zoppy-crm/whatsapp-v2</code> and a local template grammar that pre-validates the rules we could extract from rejection texts.</li>
+</ul>
+<div class="ask"><b>Ask.</b> A webhook before a WABA is payment-blocked, tier-capped or country-restricted, not after the campaign. Health that agrees with send-time errors. Synchronous 4xx where the rule is known at send time. One machine-readable error table grouped by limit type (throughput, tier, quality, pair, app quota, BUC, registration) with scope and retry semantics. Machine-readable template validation errors (code, field, rule) and a validate-only endpoint. Never a permanent <code>sent</code>.</div>
+</div>
+
+<h3 id="a5">A5. What you can see about clients' account health and growth opportunities</h3>
+<div class="card">
+<div class="today" id="a5-today"><b>How we do it today</b> (code on master, 26 Oct).
+<ul>
+<li>Shown to merchants: tier (as "Tier 1 to 4 / Ilimitado" and a daily-limit card), quality (GREEN/YELLOW/RED), the verification badge, a 24-hour funnel sent → delivered → read → failed from our own database, and volume from <code>pricing_analytics</code> (15-minute cache). We never request <code>COST</code>: Meta answers 400 "COST is not shown for businesses who bill through a partner" and drops the whole response.</li>
+<li>In the library but unused in the product: <code>conversation_analytics</code> and the WABA <code>analytics</code> resource. Not shown anywhere: throughput level, messaging-limit utilisation in Meta's own unit (unique recipients in the rolling 24-hour window; our card uses billed volume per calendar day and over-estimates), the path to the next tier, per-template quality scores (persisted, no UI), display-name status, account alerts (none received).</li>
+</ul>
+</div>
+<h4>Where it falls short</h4>
+<ul>
+<li>Everything we show is polled: <code>GET /{phone-number-id}</code> for messaging limit, <code>GET /{waba}/health_status</code>, quality. 1,673 accounts per sweep, ~2,800 to 3,400 calls, which is why the app hit "(#4)" and merchants could not edit templates. Dead WABAs ("Object does not exist") still cost a call each.</li>
+<li>No webhook for tier or throughput changes; <code>throughput.level</code> is an enum never mapped to messages per second; inbound counts against throughput and is invisible to the BSP.</li>
+<li>No per-number free-tier consumption before the 1,001st service message; the only signal is <code>pricing.type</code> flipping in the status webhook afterwards.</li>
+<li>No "opened" status for a Flow message and no "last sent / opened" on Flow objects; the Flows Metrics API was deprecated on 30 Apr 2026. We infer opens from our own endpoint calls (46% opened, 19% reached page 2).</li>
+<li>Per-recipient reasons for <code>131026</code> and the per-user marketing cap (<code>131049</code>) are not visible, so we cannot tell a merchant why a given customer never gets campaigns.</li>
+</ul>
+<div class="ask"><b>Ask.</b> A batch read of phone status, tier, throughput, quality and WABA health per app in one call; webhooks for tier and throughput changes and for first quality classification; dead objects not counted against quota; free-tier consumption per number in the API; an opened status for Flows; per-recipient eligibility.</div>
+</div>
+
+<h3 id="a6">A6. Support and appeals when something goes wrong</h3>
+<div class="card">
+<div class="today" id="a6-today"><b>How we do it today</b> (code on master, 26 Oct).
+<ul>
+<li><b>In-app appeal path: none.</b> No endpoint, button or link to Meta's appeal forms. A rejected template shows "Motivo" (Meta's <code>rejection_info.reason</code>, or our PT-BR default per reason category when Meta sends none; Meta only provides reason and recommendation text for INVALID_FORMAT) and "Como corrigir", with buttons "Fechar / Editar template". Editing a rejected template does not re-submit it.</li>
+<li>Links we give: Business Manager security settings, WhatsApp Manager home, billing hub (PLG); a Meta help article on quality and the hard-coded messaging-limits link (CRM); exception texts say "entre em contato com o suporte da Meta" with no URL. Our own help-center articles cover "how to request the unblock of your BM" and "how to identify a WhatsApp API error".</li>
+<li>No CSM runbook exists in any repo or doc folder; guidance lives in card comments: policy flag → WhatsApp Accounts → Policy/Health Status, then "open a ticket directly with Meta support", "Zoppy has no permission or mechanism to remove the flag"; 130497 → complete country, address and profile, wait 24 h, Meta Business Support with wamids; scam rejection → "ask for review in WhatsApp Manager or rewrite the text"; lost token scopes → reconnect.</li>
+<li>No Meta partner manager, Direct Support entitlement or named contact appears anywhere in code, env vars or docs.</li>
+</ul>
+</div>
+<h4>Where it stands</h4>
+<ul>
+<li>In five months of engineering sessions there is no record of a substantive Meta reply to any Zoppy or merchant ticket. The Khor ticket "returned only an automatic reply from Meta AI Agent with a generic payment-method template, irrelevant to the case".</li>
+<li>Meta's support page says for some sent-but-not-delivered cases "we will not disclose the underlying cause".</li>
+<li>The Flows delivery bug report we drafted on 10 Sep (21 KB, wamids, timelines, reproduction steps, 11 validator-vs-runtime findings) was never filed because there was no obvious place where it would reach Flows engineering. Meta's own GitHub repo has the same report open and unanswered since 3 Aug 2025 (<a href="https://github.com/WhatsApp/WhatsApp-Flows-Tools/issues/43">WhatsApp-Flows-Tools issue 43</a>).</li>
+<li>139000 integrity blocks and the review reset on partner add are "contact support" only, with no SLA.</li>
+<li>Template appeals: re-saving a rejected template does not re-submit it; the merchant must create a new one.</li>
+</ul>
+<div class="ask"><b>Ask.</b> A named partner contact and a human escalation path with an SLA for a BSP of this size. A place to file reproducible platform bugs that reaches engineering, with a ticket id we can quote to merchants. Self-serve appeals for integrity blocks and template rejections, with the reason stated.</div>
+</div>
+
+<h3 id="a7">A7. How Meta can better support growth</h3>
+<div class="card">
+<ul>
+<li><b>A test path for Brazil</b> (B1). Every feature we ship is tested on real merchants' numbers and our own phones.</li>
+<li><b>Product-catalog messaging that does not require a Commerce Manager catalog.</b> Carousel is marketing-only (9.2× the service price), no interactive message holds more than one image, and multi-product messages need a catalog per WABA with extra scopes and merchant re-consent. We built catalogs as Flows instead and paid for it (B3). A service-priced media carousel inside the 24-hour window would replace all of that.</li>
+<li><b>Flows that work for image-heavy content</b>: image by URL or media id, a documented payload limit, validator parity, an opened status (B3).</li>
+<li><b>A quota that scales with a BSP</b> (B4).</li>
+<li><b>Clarity on AI</b>: whether a BSP-operated LLM on the merchant's number falls under the "AI Providers" policy (charging in Brazil since 11 Mar 2026); eligibility and model for Meta Business Agent; whether its replies are exempt from delivery charges.</li>
+<li><b>Changes announced to partners, dated and crawlable, in one standardized documentation tree</b> (B5). The 1,000 free service messages per month, the Oct rate card, the cross-country rule: all learned from vendors first.</li>
+<li><b>Service messages charged per delivery is the wrong signal for conversational commerce</b> (B6). The use case Meta promotes to partners, an agent answering customers inside the 24-hour window, became the only format where the customer starts and the business pays per answer, with no volume tiers.</li>
+</ul>
+</div>
+
+<h2>B. Our own issues to push in</h2>
+
+<h3 id="b1">B1. Testing: impossible without a production account</h3>
+<div class="card">
+<p><b>Complaint.</b> Meta's free test number silently stopped delivering to Brazilian recipients, Meta never announced it, and there is no messaging sandbox. Every QA session at Zoppy uses a real production WABA, a real phone, and a human opening the 24-hour window by hand.</p>
+<ul>
+<li>Luis dates the break to late 2025 or early 2026. Third parties date Meta's cross-country restriction on messaging Brazil and Indonesia to 15 Sep 2025 (error <code>130497</code>). The free test number is a US +1 555 sender in an unverified account, so to Meta it is a foreign business. The changelog has no entry (checked 6 Oct 2026); the error-code page lists 130497 only generically.</li>
+<li>From Zoppy's side it was silent: HTTP 200 on send, no delivery, no error seen. A Meta community thread (French developer, Brazilian coworker) reports the same: "The API returned a 200 status code despite message failure."</li>
+<li>The dashboard's "Claim sandbox account" is for the Calling API, "only available to Tech Partners", and its number "cannot be used to send or receive messages".</li>
+<li>Zoppy's test history: a coworker-customer's production account (Aug), Xapo Store's production WABA for the Flows PoC (Sep, dead by 5 Oct), a new number since 5 Oct shared by staging and mirror (which collide on webhook routing and agent config), and a real production store for the Flows v2 test on 17 Oct.</li>
+<li>Every free-form test needs a human to message the business number first to open the 24-hour window; draft Flows need it too. Flow preview and validator are not faithful to real clients (B3), so findings only appear on physical iPhones and Androids. Published test Flows cannot be deleted.</li>
+</ul>
+<blockquote>Luis, 13 Aug 2026: "It's always a tremendous, absurd hassle to test WhatsApp flows... Meta made a change that basically blocked Brazilian numbers from test business management accounts... they did not return an error, and they did not deliver your message... currently we use actual production Facebook accounts."</blockquote>
+<div class="ask"><b>Ask.</b> An official statement that the cross-country rule applies to test numbers, with the date. Country-matched test numbers (+55) or an exemption for verified test recipients. A self-serve messaging sandbox covering templates, interactive messages, Flows and status webhooks, more than 5 recipients, no 24-hour window for allow-listed recipients, deletable test Flows, and no impact on portfolio slots or quality. A test-mode Embedded Signup.</div>
+<details><summary>Verified facts with sources</summary>
+<ul>
+<li>Test number: 5 verified recipients, pre-approved <code>hello_world</code> only, cannot be deleted (third-party doc; Meta's Get Started page states no recipient or country limits).</li>
+<li>Cross-country rule: 130497 for businesses outside BR/ID messaging BR/ID; lifted after a scaling path and the 2,000 tier, up to 30 days, "may not be possible even after a scaling path is completed" (wati.io 14 Jul 2026; 360dialog error list; trama.so 16 May 2026). Same pattern for Indonesia on GitHub (arthurfons/SmartDesk issue 1, 19 Sep 2026): +1 555 sender, accepted, then <code>failed</code> 130497 by webhook.</li>
+<li>Adding a real QA number: 2 numbers per unverified portfolio (20 after verification); <code>register</code> limited to 10 tries per 72 h (133016); display-name review may block sending 24 to 48 h (131037).</li>
+</ul>
+</details>
+</div>
+
+<h3 id="b2">B2. Silent failures: 200, then nothing</h3>
+<div class="card">
+<p><b>Complaint.</b> The Cloud API answers 200 with a <code>wamid</code> and reports <code>sent</code>, then the message never reaches the phone and no <code>failed</code> ever follows. From a BSP's side that is indistinguishable from success, so no fallback can trigger.</p>
+<ul>
+<li><b>PoC, 8 to 10 Sep 2026</b>, ~150 sends from Xapo Store's WABA to Luis's iPhone: 10 messages stuck at <code>sent</code> for over 16 hours (139 to 904 KB) while text, a 150 KB image and 1 KB / 100 KB Flows to the same phone were delivered. Byte-identical bodies delivered once and stuck once. WhatsApp Web received everything the iPhone did not. A burst of 15 × 879 KB into one chat: 0 of 15; a 392 KB control after it also stuck; a reply from the user flushed the control but not the pile.</li>
+<li><b>Production v1</b> (catalog data inside the message), 9 to 18 Oct: 13 of 319 Flows still at <code>sent</code> (4.1%) vs 0.65% for the agent's text messages. After the move to the data endpoint (v2, 18 to 26 Oct): 7 of 363 (1.9%), 16 failed with the GUIPACK payment block.</li>
+<li><b>At fleet scale</b>, 30 days: 115,387 of 2,914,655 Marketing Messages Lite template sends (4.0%) are still at <code>sent</code>, never delivered, never failed.</li>
+<li><b>Controlled test, 16 Oct</b>, one iPhone 15, WhatsApp Web closed, 7 s apart: 20 × 772 KB → 0 arrived; 10 × 500 KB → 0; 10 × 250 KB → 0; controls of 1.7 KB and 50 KB arrived. The API accepted 40 of 40. Earlier, 100 of 100 photo-less Flows arrived.</li>
+<li>Same 770 KB of photos re-sent on 17 Oct through a Flow data endpoint: 21 of 21 arrived. In production from 18 Oct: 150 catalogs, 0% stuck.</li>
+<li><b>"Delivered" is not "seen"</b>: on 15 Oct a Vörr customer (a Zoppy coworker) had a 450 KB Flow reported <code>delivered</code> 3 s after send, answered the texts around it, and never saw the catalog on his iPhone.</li>
+<li>A 1,178 KB body gets HTTP 200 and a <code>failed</code> webhook one second later; the limit is not documented for in-message payloads.</li>
+<li>One WABA (Loja be Carvalho, 11 Aug, 22:35) got zero status callbacks for over 3 hours on 3,197 accepted sends while 30k other messages progressed. Never explained.</li>
+<li>A read receipt exists for a message the customer says never arrived (CAIU DO PÉ). Unresolved.</li>
+</ul>
+<blockquote>Bug report, 10 Sep 2026: "A permanent <code>sent</code> is the worst outcome for a BSP: it looks like success and blocks any fallback."</blockquote>
+<div class="ask"><b>Ask.</b> Emit <code>failed</code> with an error code when a client will never fetch or render a message, and a bounded time after which <code>sent</code> without <code>delivered</code> becomes <code>failed</code>. Reject synchronously what Meta already knows it will reject. Define <code>delivered</code> for multi-device recipients. Explain what the "experiment" in 130472 is.</div>
+</div>
+
+<h3 id="b3">B3. WhatsApp Flows</h3>
+<div class="card">
+<p><b>Why Flows.</b> Every non-template message is priced the same from 1 Oct, carousel is marketing-only, no interactive message holds more than one image. A 5-product catalog was 12 billable messages; one Flow is 1. So the catalog became a Flow. What it took:</p>
+<h4>Product limitations</h4>
+<ul>
+<li><b>No image by URL anywhere.</b> "RichText: external URIs are not supported"; <code>Image</code>, <code>NavigationList</code>, <code>ImageCarousel</code> are base64 too. The only route for many photos is the encrypted data endpoint.</li>
+<li><b>Payload limit undocumented and enforced after the 200.</b> "1 Mb" appears only in the Image component's limits table; nothing on the send-a-Flow page. 1,178 KB → 200 then <code>failed</code>; 976 KB delivered in a clean chat; on one iPhone anything from 250 KB up never arrived. Whether the cap is 1,000,000 or 1,048,576 bytes and what it counts is unknown.</li>
+<li><b>RichText renders inline images only behind <code>data:image/png;base64,</code></b>, whatever the bytes. JPEG behind <code>image/jpeg</code>, WebP behind <code>image/webp</code>, or no prefix: raw base64 printed as text. Reproduced on iPhone, Android (5 Oct) and Web. The reference lists png, jpg, WebP. <code>Image.src</code> has the opposite convention. Zoppy ships WebP bytes labelled png.</li>
+<li><b>Per-screen caps</b>: 3 <code>Image</code>, 2 <code>EmbeddedLink</code>; RichText alone on its screen except a Footer; Flow name unique per WABA; uploading an asset to a published Flow reverts it to DRAFT.</li>
+<li><b>Lifecycle</b>: published Flows cannot be edited (139001) or deleted (139004), only deprecated, and deprecation "prevents sending and opening", so customers tapping an old catalog get nothing. No last-sent or opened data. No documented maximum per WABA (our own bug created 48 per WABA; Meta never refused).</li>
+<li><b>Data endpoint model is heavy for a BSP</b>: public key per phone number (76 to 84 uploads); requests signed with "the app connected to the Flow", so 4 stores on their own app cannot be served; alerts at p90 1 / 5 / 7 s, error 5 / 10 / 50%, availability under 90%; Throttled = 10 sends per hour; Blocked = customers cannot open previously sent Flows. Throttle is per Flow but the endpoint is shared, so one slow gateway degrades every store.</li>
+<li><b>Business verification gates Flow creation</b>: 139000 "Blocked By Integrity" for 5 stores, support only.</li>
+<li><b>No opened status</b>; single-product answers can never be a Flow (one-screen terminal Flow passes validation, publishes, then send fails 131009).</li>
+</ul>
+<h4>Validator vs reality</h4>
+<ul>
+<li><code>If</code> wrapping a <code>Footer</code>: validator OK, navigation fails on the client.</li>
+<li><code>NavigationList</code>: validator OK, "opens with an error on the iOS client in every variant tried".</li>
+<li>Terminal entry screen without Footer: validator OK, publish OK, send fails 131009.</li>
+<li>"WABA subscribed to Flows webhooks" publishing check: looks like a prerequisite, is a cosmetic warning (verified 17 Oct).</li>
+</ul>
+<h4>Docs</h4>
+<ul>
+<li>Flows changelog URL returned HTTP 500 (8 and 14 Sep); versioning, flowjson guide and FAQ URLs 404. The components reference served to a fetcher did not list <code>ImageCarousel</code> or <code>NavigationList</code>. "1 Mb" (Image table) vs "10 MB" (endpoint). Best practices say "avoid base64 images" while every component forbids URLs.</li>
+</ul>
+<div class="ask"><b>Ask.</b> Image by URL or media id; a documented in-message limit with synchronous rejection; fix or document the RichText prefix rule; validator parity; fix NavigationList on iOS; a documented read-only catalog pattern; per-app key registration and partner-app signing; explicit Throttled/Blocked thresholds and windows; in-place update or hard delete; an opened status; document 139000 with a self-serve path.</div>
+<p class="small">Hand over: <code>/home/acer-nitro/Zoppy/zoppy-api/docs/wpp-commerce/meta-flows-delivery-bug-report.md</code>. Fill in the iOS and app versions before sending.</p>
+</div>
+
+<h3 id="b4">B4. Rate limits and the shared app quota</h3>
+<div class="card">
+<p><b>Complaint.</b> The app-level quota (error <code>#4</code>) is one pool shared by all tenants on the tech-provider app, sized by "200 × daily active users", which has no meaning for server-to-server BSP traffic. The usage headers do not say what is being limited.</p>
+<ul>
+<li>From July 2026, merchants editing templates saw raw "(#4) Application request limit reached" (HTTP 403). 12 Aug: 43 of 48 uploads in one hour returned 403; 60 template-create #4 errors across 14 companies in 48 h.</li>
+<li>Measured ceiling: about 4,000 to 4,500 calls per rolling hour for the whole app ("the equivalent of ~20 daily active users"). <code>X-App-Usage</code> read 94 to 114% daily, peak 120% over four hours on 11 Aug, while sends were never throttled and <code>total_cputime</code> was always 0.</li>
+<li>Most of the quota went to polling Meta's own data (A5). A throttle built on the headers delayed 108,216 sends in 24 h and was removed a week later.</li>
+<li>"Rate limit hit" (130429) on a verified 2,000-tier portfolio at 300 sends (MNMAL, 24 Jul), delivered only by <code>failed</code> webhook. <code>throughput.level</code> is never mapped to messages per second; inbound counts and is invisible.</li>
+<li>The BUC per-WABA limit (80008) never fired while the app-wide #4 did.</li>
+</ul>
+<blockquote>Luis, 13 Aug 2026: "It does not make any sense. We have a big quota and plenty of daily active users. What characterizes a daily active user? We are a BSP. We're big, bro. What's going on?"</blockquote>
+<div class="ask"><b>Ask.</b> Publish the app call budget as a number; say how "users" is computed for a tech-provider app; scope management calls per WABA or raise the base allowance for BSPs; document what <code>X-App-Usage</code> above 100% means and which dimension gates; state that <code>POST /messages</code> is outside the quotas; map <code>throughput.level</code> to mps; one error table by limit type.</div>
+</div>
+
+<h3 id="b5">B5. Communication and documentation</h3>
+<div class="card">
+<ul>
+<li><b>Pricing change, Oct 2026.</b> The "1,000 free service messages per month per number" tier was invisible to any non-browser fetch of Meta's page (curl returned a 1.5 KB shell); for a week Zoppy treated it as a vendor rumour. The page promised the Oct rate card "by September 1, 2026"; on 8 Sep it was unpublished. The changelog URL returned HTTP 500 on 8 and 14 Sep. business.whatsapp.com's Brazil page still said service messages are free (14 Sep). "What counts as one message" is defined only by absence.</li>
+<li><b>Undocumented behaviours found in production.</b> Cross-country restriction on test numbers and after re-onboarding (130497); phone-book re-send; review reset on partner add; click-tracking redirect collapsing repeated query-string keys in template URL buttons (LUIVA, verified 19 Aug with a live resend); RichText prefix rule; 1 MB Flow limit; 139000; quality webhook only on band change; <code>account_update</code> sometimes without <code>waba_info</code>.</li>
+<li><b>Docs are not standardized.</b> Two parallel trees for the same product: the old <code>developers.facebook.com/docs/whatsapp/...</code> (mostly 404 now, but still the one search engines and third-party guides link to) and the new <code>/documentation/business-messaging/whatsapp/...</code> (client-rendered, invisible to curl and to most fetchers). The same concept has different names and limits depending on the page: "1 Mb" in the Image component table vs "10 MB" for the endpoint; the Flows components reference omits components the validator accepts; interactive and multi-product pages return only navigation (8 and 11 Sep); Flows FAQ, versioning and flowjson guide 404; the changelog 500. Rate cards ship only as CSV, PDF or XLSX with "This is not our current rate card" in the header. Error codes are listed without scope (phone, WABA, app, pair) or retry semantics, and the best-practices page contradicts the components page ("avoid base64 images" vs "external URIs are not supported"). Partners end up reading 360dialog, wati and YCloud to learn what Meta's pages mean.</li>
+</ul>
+<div class="ask"><b>Ask.</b> One documentation tree with stable URLs and redirects from the old one; server-rendered pages; one glossary and one limits table per object (phone, WABA, app, Flow) that every page links to instead of restating; a dated, crawlable changelog and RSS for pricing, policy and platform changes; honour announced dates; fix the broken pages; document the behaviours above.</div>
+</div>
+
+<h3 id="b6">B6. Webhooks, templates, media, pricing (shorter)</h3>
+<div class="card">
+<h4>Webhooks</h4>
+<ul>
+<li>Redelivery policy undocumented precisely: after a 1h30 outage on our side (15 Oct) Meta redelivered everything at ~2× normal rate; duplicates are normal; no delivery id or attempt header.</li>
+<li><code>account_update</code> sometimes without <code>value.waba_info</code> (7 events in 24 h dropped).</li>
+<li>Zoppy allows <code>failed → delivered</code> assuming Meta delivers after transient failures; never confirmed.</li>
+</ul>
+<h4>Templates and media</h4>
+<ul>
+<li>Link media fetch fails with <code>131053</code> at ~0.4% baseline and up to 13% in campaign bursts (216 of 1,632 on 18 Aug); suspected per-ASN limits on Meta's fetch proxy; WebP not accepted for header media. In the last 30 days: 417 campaign failures in 17 companies, and 67 of the AI agent's product-photo sends in 13 companies (its second failure cause after the GUIPACK payment block).</li>
+<li>Media download requires forwarding the WABA bearer token to whatever URL Meta returns.</li>
+<li>Emoji and grapheme counting toward the 60/1024/60/25 limits is undocumented (© and ® count as emoji).</li>
+</ul>
+<h4>Coexistence mirroring</h4>
+<ul>
+<li>BALNERAE: campaign sent 11 Sep 17:30, customers read it on 12 to 13 Sep, the merchant's app synced all copies on Monday 14 Sep 08:24, and carousel cards in the mirrored copy had no images.</li>
+<li>Use Bruna Faria, 7 Oct: 291 Marketing Messages Lite sends accepted (270 delivered), only 11 visible in the merchant's app. Hypothesis: MM Lite is not mirrored.</li>
+<li>Echoes carry no hand-off semantics; the AI keeps answering after the human replies from the app.</li>
+</ul>
+<h4>Pricing: service messages are now charged</h4>
+<ul>
+<li><b>The change itself.</b> From 1 Oct 2026 every non-template message is charged per delivery at the utility rate (Brazil US$ 0.0068 / R$ 0.035), after Meta made service conversations free on 1 Nov 2024. Service messages are the replies a business sends inside the 24-hour window a customer opened: the entire conversational-commerce use case, and the one Meta has been asking partners to build on. It is now the only format where the customer starts the conversation and the business pays per answer, with no volume tiers. For an AI agent that answers in several bubbles, cost scales with how helpful the agent is. Merchants and partners read it as a tax on good service.</li>
+<li><b>Measured impact on Zoppy's base is small</b> (about US$ 60 a month across all tenants; four numbers above the 1,000 free tier: Anjuss 6,663 service messages a month, Vörr 3,238). The complaint is less the money than the direction and the way it was communicated (B5): the free tier appeared on a client-rendered page, the rate card came after the promised 1 Sep date, and the Brazilian consumer page still said service messages were free on 14 Sep.</li>
+<li><b>Open clarity items</b>: a billing table per message type; whether undelivered messages are billed (billing is "on delivery"; Flows stuck at <code>sent</code> are presumably free); the AI Providers rule for BSP-operated agents on the merchant's own number; carousel priced as marketing only; Meta Business Agent as the only way to be charged by token instead of by delivery.</li>
+</ul>
+<div class="ask"><b>Ask.</b> Keep customer-initiated conversations free, or at least exempt replies that answer the customer's own question within a short window; volume tiers for service messages like the other categories; a billing table per message type on the pricing page; confirmation that undelivered messages are not billed.</div>
+</div>
+
+<h2 id="questions">C. Questions to put to them directly</h2>
+<ol>
+<li>Is the cross-country restriction (130497) applied to Meta's own test numbers, since when, and where is it documented? Why did it hit a Brazilian number messaging Brazilians after re-onboarding in coexistence?</li>
+<li>Why do Flow messages with 150 to 800 KB of in-message data stay at <code>sent</code> forever on iOS (0 of 40 in a controlled test) while small Flows and texts arrive, and why does no <code>failed</code> follow? Same mechanism as WhatsApp-Flows-Tools issue 43?</li>
+<li>What is the exact in-message Flow payload limit, how is it measured, and why is an over-limit body answered 200 then <code>failed</code> instead of a 4xx?</li>
+<li>What does <code>delivered</code> mean for a multi-device recipient? Can it fire on WhatsApp Web while the phone never shows the message?</li>
+<li>Why does RichText render inline images only behind <code>data:image/png;base64,</code>? Will the client start validating bytes against the prefix? Will any component accept an image URL or media id?</li>
+<li>Can a Solution Partner register the endpoint key once per app and sign requests for Flows created under a customer's own app? In the new account model, which partner signs?</li>
+<li>What is our app's call budget in calls per hour, and how is "daily active users" computed for server-to-server traffic? Why does the per-WABA BUC limit never fire while the app-wide one does? Does <code>POST /messages</code> count?</li>
+<li>How does <code>throughput.level</code> map to messages per second, and does inbound count?</li>
+<li>What are 131049 "healthy ecosystem engagement" and 130472 "part of an experiment" per recipient, and can the per-user cap be queried before sending?</li>
+<li>Will there be a warning webhook before a WABA is payment-blocked (131042), tier-capped or country-restricted? Why can <code>health_status</code> be AVAILABLE while 100% of sends fail (130497, 133010)?</li>
+<li>Why was a merchant's whole phone book re-sent via <code>smb_app_state_sync</code> twice without a sync request? Can a BSP opt out of that field alone? Are MM Lite sends mirrored into the coexistence app?</li>
+<li>Does adding a BSP partner always reset <code>account_review_status</code> to "not started", and what is the re-review SLA? What does partner-led verification look like in the API?</li>
+<li>Is 139000 "Blocked By Integrity" on Flow creation caused by missing business verification, and is there a self-serve resolution?</li>
+<li>Does enabling a webhook field on the app apply to WABAs already subscribed? Can a business token read the app's field list? Can deliveries stop for WABAs that removed the app? In the multi-partner model, who receives inbound messages?</li>
+<li>Why did one WABA get zero status callbacks for 3 hours on 3,197 accepted sends (11 Aug)?</li>
+<li>Is the URL-button query-string normalization in the click-tracking redirect intended, and can it be turned off?</li>
+<li>Service messages: will there be volume tiers, or an exemption for replies that answer the customer's own question inside the window? Are undelivered messages billed? Does a BSP-operated AI agent on the merchant's number fall under the AI Providers policy?</li>
+<li>Documentation: is the old <code>/docs/whatsapp</code> tree being retired, and will the new one get server-rendered pages, stable URLs and one limits table per object?</li>
+<li>Is there, or will there be, a Brazil-capable messaging sandbox for Tech Providers? Does Zoppy qualify for the "Tech Partner" sandbox program?</li>
+<li>Where should a BSP file a reproducible platform bug so it reaches engineering, and who is our partner contact?</li>
+</ol>
+
+<h2 id="bring">D. What to bring, how to run it</h2>
+<div class="card">
+<p><b>Bring.</b></p>
+<ul>
+<li>The Flows bug report (B3), with wamids and the 16 Oct phone-test numbers (0/40 at 250 to 770 KB, 2/2 controls, 21/21 via endpoint).</li>
+<li>Three numbers for the quota story: ~4,000 to 4,500 calls per rolling hour measured ceiling; 94 to 120% <code>X-App-Usage</code> daily; 43 of 48 uploads 403 in one hour on 12 Aug, 14 companies hit in 48 h.</li>
+<li>The 30-day failure table (A4): 612k failed of 3.98M business-initiated sends (15.4%); 242k payment issue across 255 companies, 154k undeliverable, 105k per-user cap, 53k "experiment"; 17 to 45 companies fully blocked every day.</li>
+<li>WABA ids for concrete cases if they offer to look: Xapo Store PoC WABA 102011429280261; Esportiva phone-book re-send (28 Aug 21:58 UTC); Loja be Carvalho status blackhole (11 Aug 22:35); Lissen 130497 (15 Sep); the 5 integrity-blocked stores; the Khor review reset.</li>
+<li><a href="https://github.com/WhatsApp/WhatsApp-Flows-Tools/issues/43">WhatsApp-Flows-Tools issue 43</a>.</li>
+</ul>
+<p><b>Run it.</b></p>
+<ul>
+<li>They will drive with their seven topics; have one concrete case ready per topic (section A) and name the date, the client and how long recovery took: that is the shape they asked for.</li>
+<li>Use topic 4 (warnings and errors) to land "never a permanent <code>sent</code>" and the error taxonomy; topic 6 (support) to hand over the Flows report and ask where it should have gone; topic 7 (growth) to land the test sandbox and the catalog layout.</li>
+<li>On quota, ask the question (how is our budget computed) before stating the complaint.</li>
+<li>Keep pricing short. The money is small; the clarity ask is the point.</li>
+<li>Leave with names: a partner contact, a place to file bugs, and a date for the test-path answer.</li>
+<li>Do not raise anything in section E.</li>
+</ul>
+</div>
+
+<h2 id="notours">E. Do not raise: things that were our fault</h2>
+<div class="card">
+<ul>
+<li>Toolbox "messages appear days late": every inbound landed in MySQL within seconds of Meta's timestamp; the problem was our read model.</li>
+<li>Staging "stuck pending" in Aug: the QA engineer's webhook misconfiguration, not Meta backing off.</li>
+<li>The Aug 09:00 504 wave and the 29-minute 500 wall: our capacity and a DB cut. Meta's retries only amplified it.</li>
+<li>Most template-route 5xx and "(#4)" in Aug: our own health sweep burning the app quota (the quota model itself is fair game, B4).</li>
+<li>Flow recreation churn (3,314 versions, 48 per WABA): our JSON comparison bug. Only the lifecycle limitations it exposed are worth raising.</li>
+<li>Flow messages stuck at <code>pending</code> in our database on 9 Oct: <code>interactive</code> missing from our allowed status-update types.</li>
+<li>"Mensagem não suportada" in the chat UIs for Flow messages: our renderers, fixed in Oct.</li>
+<li>The July throttle built on usage headers that delayed 108k sends: our design, though it shows the headers are not actionable.</li>
+<li>Coexistence history ingestion shipped in Jan and never enabled; echo hand-off semantics; Embedded Signup exchanging the code in the browser until May; signup failures not logged (Biodora).</li>
+</ul>
+</div>
+
+<h2 id="internal">F. Internal findings from the code study (for you, not for them)</h2>
+<div class="card">
+<p class="small">Things the preparation surfaced that you may be asked about or that would be embarrassing to learn in the room. None is for Meta.</p>
+<ul>
+<li><b>The 20 mps coexistence brake never engages in production.</b> It keys on <code>scenario === 'tech_provider_wpp_business'</code>, but activation overwrites scenario with <code>integrated</code> on 100% of active accounts. Every coexistence number sends at our 30/s ceiling, above Meta's documented 20 mps for coexistence.</li>
+<li><b>The history pipeline is dead end-to-end</b>: nothing requests the sync, Meta never sends <code>history</code>, the gate column is NULL everywhere. The Jan 2026 strategy has never processed a message.</li>
+<li><b>Echoes do not pause the AI</b> (card 13544, open): the human's app reply is stored with no manager and shown to the model as broadcast context. 21 coexistence companies run the agent.</li>
+<li><b>Verification status is NULL on 677 of 1,246 accounts</b> because the only writer is the merchant opening the status screen; partner certification webhooks are received and discarded (card 7590, open since May).</li>
+<li><b>Meta's LIMITED is collapsed into BLOCKED</b> (card 12585): 247 merchants have an open "business blocked" issue when they are only unverified. Not rendered in the CRM anyway: 13 of 15 issue types have no banner.</li>
+<li><b>Registration PIN is hard-coded (123456)</b> and the Embedded Signup flow has no cloud-only variant.</li>
+<li><b>Disconnect never tells Meta</b> (no <code>DELETE subscribed_apps</code>, no deregister); idle rows keep their ids and block returning customers ("WABA_ID já registrado").</li>
+<li><b>12,540 templates in PENDING_DELETION</b> across 956 companies, re-submitted without pacing under the shared app quota.</li>
+<li>The CRM "Visualizar detalhes" link on the status screen is hard-coded to one business id and asset id for every merchant; the zoppy-fe verification badge compares uppercase <code>VERIFIED</code> while the DB holds lowercase <code>verified</code> (flagged, not verified in the browser).</li>
+<li><b>We cannot read our own webhook field subscriptions</b> (needs an app token) and have zero <code>account_alerts</code> and zero <code>flows</code> webhook rows ever; confirm in the App Dashboard which fields are on before telling Meta "we never received X".</li>
+<li>The merchant-notification rail (e-mail/WhatsApp for integration issues) has tables and a model on master but no application code.</li>
+</ul>
+</div>
+
+<p class="small">Sources: engineering sessions 2026-05-20 to 2026-10-23 (zoppy-api, zoppy-whatsapp-commerce, workspace), five deep-read reports and three code studies, <code>zoppy-api/docs/wpp-commerce/meta-flows-delivery-bug-report.md</code>, <code>wpp-flows-findings.md</code>, <code>wpp-meta-pricing.md</code>, <code>wpp-catalogo-alternativas.md</code>, and zoppy-api cards 6895, 7590, 9071, 9640, 10197, 10240 to 10245, 10318, 10423, 10525, 10898, 11046, 11055, 11063, 11065, 11390, 11391, 11548, 11557, 11700, 11722, 12502, 12585, 13042, 13407, 13544. Generated 2026-10-26.</p>
+
+</main>
+</body>
+</html>
